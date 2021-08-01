@@ -135,6 +135,20 @@
                     ],
                     "description": "Log Level"
                 },
+                "vscode-neovim.defaultMode": {
+                    "type": "string",
+                    "default": "normal",
+                    "enum": [
+                        "insert",
+                        "normal"
+                    ],
+                    "description": "What mode to start the editor in."
+                },
+                "vscode-neovim.resetModeOnWindowChange": {
+                    "type": "boolean",
+                    "default": true,
+                    "markdownDescription": "If 'true' will reset windows to the vscode-neovim.defaultMode on window change."
+                },
                 "vscode-neovim.logOutputToConsole": {
                     "type": "boolean",
                     "default": false,
@@ -1260,6 +1274,7 @@
     },
     "scripts": {
         "lint": "eslint --ext .ts src",
+        "lint-fix": "eslint --fix --ext .ts src",
         "test": "node ./out/test/runTest.js",
         "pretest": "yarn run test-compile",
         "vscode:prepublish": "webpack --mode production",

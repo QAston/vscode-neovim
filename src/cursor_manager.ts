@@ -323,6 +323,7 @@ export class CursorManager
     };
 
     private onSelectionChanged = async (e: TextEditorSelectionChangeEvent): Promise<void> => {
+        // todo: put sending cursor for insert mode here possibly?
         if (this.modeManager.isInsertMode) {
             return;
         }
@@ -448,6 +449,10 @@ export class CursorManager
             }
             return;
         }
+        // don't update the cursor with neovim's cursor position if we're in insert mode because neovim doesn't receive cursor updates for insert mode cursor movements, fixes #642
+        //if (this.modeManager.isInsertMode) {
+        //    return;
+        //}
         const currCursor = editor.selection.active;
         const deltaLine = newLine - currCursor.line;
         let deltaChar = newCol - currCursor.character;
