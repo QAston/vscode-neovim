@@ -28,6 +28,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     const logPath = settings.get("logPath", "");
     const logLevel = settings.get("logLevel", "none");
     const outputToConsole = settings.get("logOutputToConsole", false);
+    const outputToChannel = settings.get("logOutput", false);
     const textDecorationsAtTop = settings.get("textDecorationsAtTop", false);
     const resetModeOnActiveEditorChange = settings.get("resetModeOnActiveEditorChange", true);
     const defaultMode = settings.get("defaultMode", "normal");
@@ -58,6 +59,7 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
                 logPath,
                 outputToConsole,
                 level: logLevel,
+                outputToChannel
             },
         });
         context.subscriptions.push(plugin);
